@@ -1,0 +1,44 @@
+version: "3.8"
+volumes:
+  php-fpm-socket:
+    driver: local
+  db-store:
+    driver: local
+  vendor-volume:
+    driver: local
+services:
+  app:
+    build: ./docker/php
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - ./backend:/work/backend:cached
+      - vendor-volume:/work/backend/vendor
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=${DB_NAME}
+      - DB_USERNAME=${DB_USER}
+      - DB_PASSWORD=${DB_PASS}
+    depends_on:
+      - db
+  web:
+    build: ./docker/nginx/
+    ports:
+      - ${WEB_PORT}:80
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - ./backend:/work/backend:cached
+    depends_on:
+      - app
+  db:
+    build: ./docker/mysql/
+    ports:
+      - ${DB_PORT}:3306
+    volumes:
+      - db-store:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
