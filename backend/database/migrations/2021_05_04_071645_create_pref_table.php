@@ -13,7 +13,7 @@ class CreatePrefTable extends Migration
      */
     public function up()
     {
-        Schema::create('pref', function (Blueprint $table) {
+        Schema::create('prefs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 4);
             $table->dateTime('created_at', 0)->useCurrent();
@@ -28,6 +28,6 @@ class CreatePrefTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pref');
+        Schema::dropIfExists('prefs');
     }
 }

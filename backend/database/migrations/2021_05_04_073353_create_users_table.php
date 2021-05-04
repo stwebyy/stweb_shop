@@ -36,7 +36,7 @@ class CreateUsersTable extends Migration
             $table->dateTime('updated_at', 0)->useCurrent();
 
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('no action');
-            $table->foreign('pref_id')->references('id')->on('pref')->onDelete('no action');
+            $table->foreign('pref_id')->references('id')->on('prefs')->onDelete('no action');
         });
     }
 

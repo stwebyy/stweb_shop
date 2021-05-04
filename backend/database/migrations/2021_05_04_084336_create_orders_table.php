@@ -17,9 +17,11 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedInteger('price');
-            $table->unsignedInteger('order_status_id');
+            $table->unsignedBigInteger('order_status_id');
             $table->dateTime('created_at', 0)->useCurrent();
             $table->dateTime('updated_at', 0)->useCurrent();
+
+            $table->foreign('order_status_id')->references('id')->on('order_statuses')->onDelete('cascade');
         });
     }
 
