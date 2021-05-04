@@ -16,6 +16,7 @@ class CreatePrefTable extends Migration
         Schema::create('prefs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 4);
+            $table->integer('code');
             $table->dateTime('created_at', 0)->useCurrent();
             $table->dateTime('updated_at', 0)->useCurrent();
         });
