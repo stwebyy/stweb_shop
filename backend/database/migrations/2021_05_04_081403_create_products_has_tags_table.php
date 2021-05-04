@@ -14,8 +14,8 @@ class CreateProductsHasTagsTable extends Migration
     public function up()
     {
         Schema::create('products_has_tags', function (Blueprint $table) {
-            $table->unsignedBigInteger('product_id')->nullable();
-            $table->unsignedBigInteger('tags_id')->nullable();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('tags_id');
             $table->dateTime('created_at', 0)->useCurrent();
             $table->dateTime('updated_at', 0)->useCurrent();
 
