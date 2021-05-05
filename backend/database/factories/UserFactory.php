@@ -2,27 +2,28 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\User;
+use App\Models\User;
+use App\Models\Role;
 use Faker\Generator as Faker;
-use Illuminate\Support\Str;
-
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
-|
-*/
 
 $factory->define(User::class, function (Faker $faker) {
+    $gender = $faker->numberBetween(0,2);
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+        'first_name' => $faker->firstName(),
+        'last_name' => $faker->lastName(),
+        'first_name_ruby' => $faker->firstKanaName($gender),
+        'last_name_ruby' => $faker->lastKanaName($gender),
+        'email' => $faker->safeEmail(),
+        'email_verified_at' => null,
+        'password' => \Hash::make('test1234'),
+        'role_id' => Role::where('role_id', 5)->first()->id,
+        'postal_code' => $faker->postcode(),
+        'gender' => $gender,
+        'birthday' => $faker->dateTimeBetween('-80 years', '-20years')->format('Y-m-d'),
+        'pref_id' => $faker->numberBetween(0,47),
+        'city' => $faker->city(),
+        'block' => $faker->streetAddress(),
+        'building' => $faker->secondaryAddress(),
+        'phone_number' => $faker->phoneNumber(),
     ];
 });
