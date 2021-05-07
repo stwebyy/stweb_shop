@@ -26,6 +26,24 @@ class User extends Model
     ];
 
     /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    /**
      * ユーザーの権限を取得
      */
     public function role()
@@ -41,6 +59,9 @@ class User extends Model
         return $this->belongsTo('App\Models\Pref');
     }
 
+    /**
+     * ユーザーの受注情報を取得
+     */
     public function orders()
     {
         return $this->hasMany('App\Models\Order');
