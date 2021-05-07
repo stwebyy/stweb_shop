@@ -12,8 +12,8 @@ class OrderStatusSeeder extends Seeder
     public function run()
     {
         $status = [
-            ['status_id' => 1, 'status' => '決済前'],
-            ['status_id' => 2, 'status' => '決済後'],
+            ['status' => '決済前'],
+            ['status' => '決済後'],
         ];
 
         DB::table('order_statuses')->insert($status);
