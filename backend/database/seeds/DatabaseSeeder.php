@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
                 OrderStatusSeeder::class,
                 PrefDataSeeder::class,
                 RoleDataSeeder::class,
+                TagDataSeeder::class,
             ]
         );
     }
