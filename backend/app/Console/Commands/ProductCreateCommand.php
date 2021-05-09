@@ -37,6 +37,7 @@ class ProductCreateCommand extends Command
     /**
      * Execute the console command.
      * 1000件ずつバルクインサートを実行する
+     * Productのレコードを作成
      *
      * @return mixed
      */
@@ -49,6 +50,7 @@ class ProductCreateCommand extends Command
 
         $loop = (int)floor($count / 1000);
         $remainder = $count % 1000;
+        $this->info('Start creating products.');
         $bar = $this->output->createProgressBar($loop + 1);
 
         for ($i = 0; $i < $loop; $i++) {
@@ -62,21 +64,20 @@ class ProductCreateCommand extends Command
 
         $bar->advance();
         $bar->finish();
-        $this->info("Products create is done.");
+        $this->info(PHP_EOL . 'Products create is done.');
     }
 
     protected function times($count)
     {
-        $faker = $this->faker;
         $attributes = [];
 
         for ($i = 0; $i < $count; $i++) {
             $attributes[] = [
-                'name' => $faker->sentence(1),
-                'price' => $faker->numberBetween(1000,10000),
-                'stock' => $faker->numberBetween(0,10000),
-                'description' => $faker->sentence(),
-                'image' => $faker->imageUrl(),
+                'name' => $this->faker->sentence(1),
+                'price' => $this->faker->numberBetween(1000,10000),
+                'stock' => $this->faker->numberBetween(0,10000),
+                'description' => $this->faker->sentence(),
+                'image' => $this->faker->imageUrl(),
             ];
         }
 

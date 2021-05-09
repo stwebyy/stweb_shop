@@ -37,6 +37,7 @@ class UserCreateCommand extends Command
     /**
      * Execute the console command.
      * 1000件ずつバルクインサートを実行する
+     * Userのレコードを作成
      *
      * @return mixed
      */
@@ -47,12 +48,13 @@ class UserCreateCommand extends Command
         User::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        $loop = (int)floor($count / 1000);
-        $remainder = $count % 1000;
+        $loop = (int)floor($count / 750);
+        $remainder = $count % 750;
+        $this->info('Start creating users.');
         $bar = $this->output->createProgressBar($loop + 1);
 
         for ($i = 0; $i < $loop; $i++) {
-            $users = $this->times(1000);
+            $users = $this->times(750);
             DB::table('users')->insert($users);
             $bar->advance();
             $users = [];
@@ -62,34 +64,33 @@ class UserCreateCommand extends Command
 
         $bar->advance();
         $bar->finish();
-        $this->info("User create is done.");
+        $this->info(PHP_EOL . 'users create is done.');
     }
 
     protected function times($count)
     {
-        $faker = $this->faker;
         $attributes = [];
         $password = \Hash::make('test1234');
-        $gender = $faker->numberBetween(0,2);
+        $gender = $this->faker->numberBetween(0,2);
 
         for ($i = 0; $i < $count; $i++) {
             $attributes[] = [
-                'first_name' => $faker->firstName(),
-                'last_name' => $faker->lastName(),
-                'first_name_ruby' => $faker->firstKanaName($gender),
-                'last_name_ruby' => $faker->lastKanaName($gender),
-                'email' => $faker->email() . (string)$i . $faker->randomLetter() . $faker->randomLetter() . $faker->randomLetter(),
+                'first_name' => $this->faker->firstName(),
+                'last_name' => $this->faker->lastName(),
+                'first_name_ruby' => $this->faker->firstKanaName($gender),
+                'last_name_ruby' => $this->faker->lastKanaName($gender),
+                'email' => $this->faker->email() . (string)$i . $this->faker->randomLetter() . $this->faker->randomLetter() . $this->faker->randomLetter(),
                 'email_verified_at' => null,
                 'password' => $password,
                 'role_id' => 2,
-                'postal_code' => $faker->postcode(),
+                'postal_code' => $this->faker->postcode(),
                 'gender' => $gender,
-                'birthday' => $faker->dateTimeBetween('-80 years', '-20years')->format('Y-m-d'),
-                'pref_id' => $faker->numberBetween(1,47),
-                'city' => $faker->city(),
-                'block' => $faker->streetAddress(),
-                'building' => $faker->secondaryAddress(),
-                'phone_number' => $faker->phoneNumber(),
+                'birthday' => $this->faker->dateTimeBetween('-80 years', '-20years')->format('Y-m-d'),
+                'pref_id' => $this->faker->numberBetween(1,47),
+                'city' => $this->faker->city(),
+                'block' => $this->faker->streetAddress(),
+                'building' => $this->faker->secondaryAddress(),
+                'phone_number' => $this->faker->phoneNumber(),
             ];
         }
 
