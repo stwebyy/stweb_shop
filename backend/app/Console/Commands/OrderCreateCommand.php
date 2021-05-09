@@ -107,6 +107,7 @@ class OrderCreateCommand extends Command
             $attributes[] = [
                 'user_id' => $this->faker->numberBetween(1, $user_count),
                 'order_status_id' => 1,
+                'order_number' => rand(),
             ];
         }
 
