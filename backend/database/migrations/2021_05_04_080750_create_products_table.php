@@ -20,8 +20,11 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger('stock');
             $table->string('description');
             $table->string('image');
+            $table->unsignedBigInteger('admin_user_id');
             $table->dateTime('created_at', 0)->useCurrent();
             $table->dateTime('updated_at', 0)->useCurrent();
+
+            $table->foreign('admin_user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

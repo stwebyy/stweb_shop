@@ -9,6 +9,9 @@ use App\Models\User;
 
 class UserCreateCommand extends Command
 {
+    const ADMIN_ROLE_ID = 1;
+    const GENERAL_ROLE_ID = 2;
+
     /**
      * The name and signature of the console command.
      *
@@ -48,30 +51,64 @@ class UserCreateCommand extends Command
         User::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
+        $this->info('Start creating users.');
+        $password = \Hash::make('test1234');
+        $this->info('Start creating admin users.');
+        DB::table('users')->insert($this->createAdminUser($password));
+        $this->info('admin users create is done.');
+
         $loop = (int)floor($count / 750);
         $remainder = $count % 750;
-        $this->info('Start creating users.');
+        $this->info('Start creating general users.');
         $bar = $this->output->createProgressBar($loop + 1);
 
         for ($i = 0; $i < $loop; $i++) {
-            $users = $this->times(750);
+            $users = $this->createGeneralUser(750, $password);
             DB::table('users')->insert($users);
             $bar->advance();
             $users = [];
         }
-
-        DB::table('users')->insert($this->times($remainder));
+        DB::table('users')->insert($this->createGeneralUser($remainder, $password));
 
         $bar->advance();
         $bar->finish();
         $this->info(PHP_EOL . 'users create is done.');
     }
 
-    protected function times($count)
+    protected function createAdminUser($password) {
+        $attributes = [];
+        $gender = $this->faker->numberBetween(0,2);
+        $tmp_char = $this->faker->randomLetter() . $this->faker->randomLetter();
+
+        for ($i = 0; $i < 5; $i++) {
+            $attributes[] = [
+                'first_name' => $this->faker->firstName(),
+                'last_name' => $this->faker->lastName(),
+                'first_name_ruby' => $this->faker->firstKanaName($gender),
+                'last_name_ruby' => $this->faker->lastKanaName($gender),
+                'email' => $this->faker->email() . (string)$i . $tmp_char . $this->faker->randomLetter(),
+                'email_verified_at' => null,
+                'password' => $password,
+                'role_id' => self::ADMIN_ROLE_ID,
+                'postal_code' => $this->faker->postcode(),
+                'gender' => $gender,
+                'birthday' => $this->faker->dateTimeBetween('-80 years', '-20years')->format('Y-m-d'),
+                'pref_id' => $this->faker->numberBetween(1,47),
+                'city' => $this->faker->city(),
+                'block' => $this->faker->streetAddress(),
+                'building' => $this->faker->secondaryAddress(),
+                'phone_number' => $this->faker->phoneNumber(),
+            ];
+        }
+
+        return $attributes;
+    }
+
+    protected function createGeneralUser($count, $password)
     {
         $attributes = [];
-        $password = \Hash::make('test1234');
         $gender = $this->faker->numberBetween(0,2);
+        $tmp_char = $this->faker->randomLetter() . $this->faker->randomLetter();
 
         for ($i = 0; $i < $count; $i++) {
             $attributes[] = [
@@ -79,10 +116,10 @@ class UserCreateCommand extends Command
                 'last_name' => $this->faker->lastName(),
                 'first_name_ruby' => $this->faker->firstKanaName($gender),
                 'last_name_ruby' => $this->faker->lastKanaName($gender),
-                'email' => $this->faker->email() . (string)$i . $this->faker->randomLetter() . $this->faker->randomLetter() . $this->faker->randomLetter(),
+                'email' => $this->faker->email() . (string)$i . $tmp_char . $this->faker->randomLetter(),
                 'email_verified_at' => null,
                 'password' => $password,
-                'role_id' => 2,
+                'role_id' => self::GENERAL_ROLE_ID,
                 'postal_code' => $this->faker->postcode(),
                 'gender' => $gender,
                 'birthday' => $this->faker->dateTimeBetween('-80 years', '-20years')->format('Y-m-d'),

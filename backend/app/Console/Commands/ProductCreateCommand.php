@@ -78,6 +78,7 @@ class ProductCreateCommand extends Command
                 'stock' => $this->faker->numberBetween(0,10000),
                 'description' => $this->faker->sentence(),
                 'image' => $this->faker->imageUrl(),
+                'admin_user_id' => $this->faker->numberBetween(1,5),
             ];
         }
 
