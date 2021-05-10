@@ -130,7 +130,7 @@ class ProductCreateCommand extends Command
         for ($i = 0; $i < $count; $i++) {
             $attributes[] = [
                 'product_id' => $this->faker->numberBetween(1, $products_count),
-                'tags_id' => $this->faker->numberBetween(1, $tags_count),
+                'tag_id' => $this->faker->numberBetween(1, $tags_count),
             ];
         }
 

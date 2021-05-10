@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Order;
-use  Illuminate\Database\QueryException;
+use Illuminate\Database\QueryException;
 
 class OrderCreateCommand extends Command
 {
