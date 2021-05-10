@@ -15,15 +15,15 @@ class CreateProductsHasTagsTable extends Migration
     {
         Schema::create('products_has_tags', function (Blueprint $table) {
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('tags_id');
+            $table->unsignedBigInteger('tag_id');
             $table->softDeletes();
             $table->dateTime('created_at', 0)->useCurrent();
             $table->dateTime('updated_at', 0)->useCurrent();
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->foreign('tags_id')->references('id')->on('tags')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
 
-            $table->primary(['product_id', 'tags_id']);
+            $table->primary(['product_id', 'tag_id']);
         });
     }
 
