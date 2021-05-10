@@ -1,0 +1,104 @@
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #333333;
+	background-color: #fff;
+	font-size: 100%;
+	line-height: 1.7;
+	-webkit-text-size-adjust: 100%;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+header {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+header .headline {
+    font-size: 32px;
+}
+
+footer {
+    font-size: 14px;
+    width: 100%;
+    background-color: #9a9a9a;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+}
+
+.h-50p {
+    height: 50px;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.shop-header-logo {
+    font-size: 26px;
+    font-weight: 600;
+    transition: linear .2s all;
+}
+
+.shop-header-logo:hover {
+    text-decoration: none;
+    opacity: 0.5;
+
+}
+
+.nav-list {
+    text-align: center;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    margin: 0 auto;
+}
+
+.nav-list-item {
+    position: relative;
+	text-decoration: none;
+}
+
+.nav-list-item .nav-list-link {
+    color: #000;
+}
+
+.nav-list-item .nav-list-link:hover {
+    text-decoration: none;
+}
+
+.nav-list-item::after {
+	position: absolute;
+	content: '';
+	bottom: 0;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background: #000000;
+	transition: all .3s ease 0s;
+}
+
+.nav-list-item:hover {
+	cursor: pointer;
+}
+
+.nav-list-item:hover::after {
+	width: 100%;
+}
+
+#wrapper {
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 120px;
+    box-sizing: border-box;
+}
