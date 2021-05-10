@@ -75,9 +75,10 @@ class UserCreateCommand extends Command
         $this->info(PHP_EOL . 'users create is done.');
     }
 
-    protected function createAdminUser($password) {
+    protected function createAdminUser($password)
+    {
         $attributes = [];
-        $gender = $this->faker->numberBetween(0,2);
+        $gender = $this->faker->numberBetween(0, 2);
         $tmp_char = $this->faker->randomLetter() . $this->faker->randomLetter();
 
         for ($i = 0; $i < 5; $i++) {
@@ -93,7 +94,7 @@ class UserCreateCommand extends Command
                 'postal_code' => $this->faker->postcode(),
                 'gender' => $gender,
                 'birthday' => $this->faker->dateTimeBetween('-80 years', '-20years')->format('Y-m-d'),
-                'pref_id' => $this->faker->numberBetween(1,47),
+                'pref_id' => $this->faker->numberBetween(1, 47),
                 'city' => $this->faker->city(),
                 'block' => $this->faker->streetAddress(),
                 'building' => $this->faker->secondaryAddress(),
@@ -107,7 +108,7 @@ class UserCreateCommand extends Command
     protected function createGeneralUser($count, $password)
     {
         $attributes = [];
-        $gender = $this->faker->numberBetween(0,2);
+        $gender = $this->faker->numberBetween(0, 2);
         $tmp_char = $this->faker->randomLetter() . $this->faker->randomLetter();
 
         for ($i = 0; $i < $count; $i++) {
@@ -123,7 +124,7 @@ class UserCreateCommand extends Command
                 'postal_code' => $this->faker->postcode(),
                 'gender' => $gender,
                 'birthday' => $this->faker->dateTimeBetween('-80 years', '-20years')->format('Y-m-d'),
-                'pref_id' => $this->faker->numberBetween(1,47),
+                'pref_id' => $this->faker->numberBetween(1, 47),
                 'city' => $this->faker->city(),
                 'block' => $this->faker->streetAddress(),
                 'building' => $this->faker->secondaryAddress(),

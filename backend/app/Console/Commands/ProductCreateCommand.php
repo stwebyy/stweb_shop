@@ -75,7 +75,7 @@ class ProductCreateCommand extends Command
 
         $products_count = Product::count();
         $tags_count = Tag::count();
-        
+
         for ($i = 0; $i < $loop; $i++) {
             $products_tags = $this->createProductTags(1000, $products_count, $tags_count);
             DB::beginTransaction();
@@ -102,7 +102,6 @@ class ProductCreateCommand extends Command
         $bar->advance();
         $bar->finish();
         $this->info(PHP_EOL . 'Products tags create is done.');
-
     }
 
     protected function createProduct($count)
@@ -112,11 +111,11 @@ class ProductCreateCommand extends Command
         for ($i = 0; $i < $count; $i++) {
             $attributes[] = [
                 'name' => $this->faker->sentence(1),
-                'price' => $this->faker->numberBetween(1000,10000),
-                'stock' => $this->faker->numberBetween(0,10000),
+                'price' => $this->faker->numberBetween(1000, 10000),
+                'stock' => $this->faker->numberBetween(0, 10000),
                 'description' => $this->faker->sentence(),
                 'image' => $this->faker->imageUrl(),
-                'admin_user_id' => $this->faker->numberBetween(1,5),
+                'admin_user_id' => $this->faker->numberBetween(1, 5),
             ];
         }
 
