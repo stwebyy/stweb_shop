@@ -92,7 +92,14 @@ class OrderCreateCommand extends Command
             $orders = [];
         }
 
-        DB::table('order_items')->insert($this->orderItemTimes($remainder, $order_count, $product_count));
+        DB::beginTransaction();
+        try {
+            DB::table('order_items')->insert($this->orderItemTimes($remainder, $order_count, $product_count));
+            DB::commit();
+        } catch (QueryException $e) {
+            DB::rollBack();
+            report($e);
+        }
 
         $bar->advance();
         $bar->finish();

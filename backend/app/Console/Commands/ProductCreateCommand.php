@@ -5,7 +5,9 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Faker\Generator as Faker;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 use App\Models\Product;
+use App\Models\Tag;
 
 class ProductCreateCommand extends Command
 {
@@ -54,20 +56,56 @@ class ProductCreateCommand extends Command
         $bar = $this->output->createProgressBar($loop + 1);
 
         for ($i = 0; $i < $loop; $i++) {
-            $products = $this->times(1000);
+            $products = $this->createProduct(1000);
             DB::table('products')->insert($products);
             $bar->advance();
             $products = [];
         }
 
-        DB::table('products')->insert($this->times($remainder));
+        DB::table('products')->insert($this->createProduct($remainder));
 
         $bar->advance();
         $bar->finish();
         $this->info(PHP_EOL . 'Products create is done.');
+
+        $loop = (int)floor($count / 1000);
+        $remainder = $count % 1000;
+        $this->info('Start creating products tags.');
+        $bar = $this->output->createProgressBar($loop + 1);
+
+        $products_count = Product::count();
+        $tags_count = Tag::count();
+        
+        for ($i = 0; $i < $loop; $i++) {
+            $products_tags = $this->createProductTags(1000, $products_count, $tags_count);
+            DB::beginTransaction();
+            try {
+                DB::table('products_has_tags')->insert($products_tags);
+                DB::commit();
+            } catch (QueryException $e) {
+                DB::rollBack();
+                report($e);
+            }
+            $bar->advance();
+            $products_tags = [];
+        }
+
+        DB::beginTransaction();
+        try {
+            DB::table('products_has_tags')->insert($this->createProductTags($remainder, $products_count, $tags_count));
+            DB::commit();
+        } catch (QueryException $e) {
+            DB::rollBack();
+            report($e);
+        }
+
+        $bar->advance();
+        $bar->finish();
+        $this->info(PHP_EOL . 'Products tags create is done.');
+
     }
 
-    protected function times($count)
+    protected function createProduct($count)
     {
         $attributes = [];
 
@@ -79,6 +117,20 @@ class ProductCreateCommand extends Command
                 'description' => $this->faker->sentence(),
                 'image' => $this->faker->imageUrl(),
                 'admin_user_id' => $this->faker->numberBetween(1,5),
+            ];
+        }
+
+        return $attributes;
+    }
+
+    protected function createProductTags($count, $products_count, $tags_count)
+    {
+        $attributes = [];
+
+        for ($i = 0; $i < $count; $i++) {
+            $attributes[] = [
+                'product_id' => $this->faker->numberBetween(1, $products_count),
+                'tags_id' => $this->faker->numberBetween(1, $tags_count),
             ];
         }
 
