@@ -16,6 +16,7 @@ class CreateProductsHasTagsTable extends Migration
         Schema::create('products_has_tags', function (Blueprint $table) {
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('tags_id');
+            $table->softDeletes();
             $table->dateTime('created_at', 0)->useCurrent();
             $table->dateTime('updated_at', 0)->useCurrent();
 

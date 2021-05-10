@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('building');
             $table->string('phone_number', 15);
             $table->rememberToken();
+            $table->softDeletes();
             $table->dateTime('created_at', 0)->useCurrent();
             $table->dateTime('updated_at', 0)->useCurrent();
 
