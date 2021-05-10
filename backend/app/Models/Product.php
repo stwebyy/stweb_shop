@@ -19,16 +19,16 @@ class Product extends Model
 
     public function orders()
     {
-        return $this->belongsToMany('App\Models\Order');
+        return $this->belongsToMany('App\Models\Order', 'order_items');
     }
 
     public function tags()
     {
-        return $this->belongsToMany('App\Models\Tag');
+        return $this->belongsToMany('App\Models\Tag', 'products_has_tags');
     }
 
     public function carts()
     {
-        return $this->belongsToMany('App\Models\Cart');
+        return $this->belongsToMany('App\Models\Cart', 'carts_has_products');
     }
 }

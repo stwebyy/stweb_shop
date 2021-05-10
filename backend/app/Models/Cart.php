@@ -21,6 +21,6 @@ class Cart extends Model
 
     public function products()
     {
-        return $this->belongsToMany('App\Models\Product');
+        return $this->belongsToMany('App\Models\Product', 'carts_has_products');
     }
 }
