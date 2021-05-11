@@ -27,33 +27,10 @@
     <body>
         <div id="wrapper">
             @include('commons.header')
-            <div class="container-fluid">
+            <div class="container-fluid mt-4">
                 <div class="row">
                     <div class="col-12">
-                        <h1 class="text-center mt-4">TOP/商品一覧</h1>
-                        <div class="input-search">検索フォーム</div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-2">
-                                <div>
-                                    <form class="text-center">
-                                        <div class="form-group">
-                                            <label for="exampleFormControlSelect1">タグで絞り込み</label>
-                                            <select class="form-control" id="exampleFormControlSelect1">
-                                              <option>1</option>
-                                              <option>2</option>
-                                              <option>3</option>
-                                              <option>4</option>
-                                              <option>5</option>
-                                            </select>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="col-10">
-                                @yield('content')
-                            </div>
-                        </div>
+                        @yield('content')
                     </div>
                 </div>
             </div>            
