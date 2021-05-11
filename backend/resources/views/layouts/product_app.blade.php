@@ -31,7 +31,16 @@
                 <div class="row">
                     <div class="col-12">
                         <h1 class="text-center mt-4">TOP/商品一覧</h1>
-                        <div class="input-search">検索フォーム</div>
+                        <form action="{{ route('index') }}" method="GET">
+                            <div class="row mt-5">
+                                <div class="offset-2 col-8 form-group">
+                                    <input id="search_product" class="form-control" type="text" name="search_product" placeholder="商品検索：検索キーワードを入力">
+                                </div>
+                                <div class="col-2">
+                                    <input type="submit" class="btn btn-dark" value="検索">
+                                </div>
+                            </div>
+                        </form>
                         <hr>
                         <div class="row">
                             <div class="col-2">
