@@ -19,7 +19,29 @@ class IndexController extends Controller
     {
         $tags = Tag::all();
         $search_tag = $request->query('search_tag');
-        if ($search_tag) {
+        $sort_query = $request->query('sort_query');
+
+        if ($search_tag && $sort_query) {
+            if ($sort_query === 'cheap') {
+                $products_collect = collect(Tag::find($search_tag)->products->sortBy('price')->values()->all());
+            } elseif ($sort_query === 'expensive') {
+                $products_collect = collect(Tag::find($search_tag)->products->sortByDesc('price')->values()->all());
+            } elseif ($sort_query === 'many') {
+                $products_collect = collect(Tag::find($search_tag)->products->sortByDesc('stock')->values()->all());
+            } elseif ($sort_query === 'few') {
+                $products_collect = collect(Tag::find($search_tag)->products->sortBy('stock')->values()->all());
+            } else {
+                $products_collect = collect(Tag::find($search_tag)->products->sortBy('created_at')->values()->all());
+            }
+            $current_page = $request->page ?? 1;
+            $products = new LengthAwarePaginator(
+                $products_collect->forPage($current_page, 20),
+                count($products_collect),
+                20,
+                $current_page,
+            );
+            $target_tag = Tag::find($request->query('search_tag')); 
+        } elseif ($search_tag) {
             $products_collect = Tag::find($search_tag)->products;
             $current_page = $request->page ?? 1;
             $products = new LengthAwarePaginator(
