@@ -1,5 +1,6 @@
 {
     "Register": "新規会員登録",
+    "Login":"ログイン",
     "first_name": "名",
     "last_name": "氏",
     "first_name_ruby": "フリガナ（名）",

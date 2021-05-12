@@ -8,10 +8,7 @@
       <ul class="navbar-nav mr-auto"></ul>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link nav-list-item" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link nav-list-item" href="#">商品一覧</a>
+          <a class="nav-link nav-list-item" href="{{ route('index') }}">TOP/商品一覧</a>
         </li>
         @if (Auth::check())
         <li class="nav-item">
@@ -22,8 +19,8 @@
             会員メニュー
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item nav-list-item" href="#">会員情報確認</a>
-            <a class="dropdown-item nav-list-item" href="#">会員情報変更</a>
+            <div class="dropdown-item" >{{ Auth::user()->last_name . ' ' .Auth::user()->first_name }}&nbsp;様</div>
+            <hr>
             <a class="dropdown-item nav-list-item" href="{{ route('logout') }}">ログアウト</a>
           </div>
         </li>
