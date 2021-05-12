@@ -22,16 +22,17 @@ class IndexController extends Controller
         $sort_query = $request->query('sort_query');
 
         if ($search_tag && $sort_query) {
+            $tmp_product = Tag::find($search_tag)->products;
             if ($sort_query === 'cheap') {
-                $products_collect = collect(Tag::find($search_tag)->products->sortBy('price')->values()->all());
+                $products_collect = collect($tmp_product->sortBy('price')->values()->all());
             } elseif ($sort_query === 'expensive') {
-                $products_collect = collect(Tag::find($search_tag)->products->sortByDesc('price')->values()->all());
+                $products_collect = collect($tmp_product->sortByDesc('price')->values()->all());
             } elseif ($sort_query === 'many') {
-                $products_collect = collect(Tag::find($search_tag)->products->sortByDesc('stock')->values()->all());
+                $products_collect = collect($tmp_product->sortByDesc('stock')->values()->all());
             } elseif ($sort_query === 'few') {
-                $products_collect = collect(Tag::find($search_tag)->products->sortBy('stock')->values()->all());
+                $products_collect = collect($tmp_product->sortBy('stock')->values()->all());
             } else {
-                $products_collect = collect(Tag::find($search_tag)->products->sortBy('created_at')->values()->all());
+                $products_collect = collect($tmp_product->sortBy('created_at')->values()->all());
             }
             $current_page = $request->page ?? 1;
             $products = new LengthAwarePaginator(
