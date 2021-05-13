@@ -15,7 +15,9 @@
                 <p class="card-text">価格：&nbsp;¥{{ number_format($product->price) }}</p>
                 <p class="card-text">商品概要：{{ $product->description }}</p>
                 @if (Auth::check())
-                <form action="#" method="POST">
+                <form action="{{ route('cart_add') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <p class="card-text">
                         <label>数量：</label>
                         <select name="cart_quantity">
