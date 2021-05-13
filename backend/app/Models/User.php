@@ -69,4 +69,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Order');
     }
+
+    /**
+     * ユーザーのカート情報を取得
+     */
+    public function cart()
+    {
+        return $this->hasOne('App\Models\Cart');
+    }
 }
