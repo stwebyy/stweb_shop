@@ -16,6 +16,7 @@ class CreateCartsHasProductsTable extends Migration
         Schema::create('carts_has_products', function (Blueprint $table) {
             $table->unsignedBigInteger('cart_id');
             $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('quantity');
             $table->softDeletes();
             $table->dateTime('created_at', 0)->useCurrent();
             $table->dateTime('updated_at', 0)->useCurrent();
