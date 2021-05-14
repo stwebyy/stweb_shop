@@ -38,6 +38,8 @@ class OrderController extends Controller
         $cart->delete();
         \Log::info("userID: $user_id のカートを削除しました。");
 
-        return redirect(route('index'));
+        return redirect(route('index'))->with(
+            'flash_message', "ご注文いただきありがとうございます。\n ご注文手続きを完了しました。\n ご注文番号： $order->order_number"
+        );
     }
 }
