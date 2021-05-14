@@ -11,8 +11,8 @@ class Order extends Model
 
     protected $fillable = [
         'user_id',
-        'price',
         'order_status_id',
+        'order_number',
     ];
 
     public function user()
@@ -27,6 +27,6 @@ class Order extends Model
 
     public function orderItems()
     {
-        return $this->belongsToMany('App\Models\Product', 'order_items');
+        return $this->belongsToMany('App\Models\Product', 'order_items')->withPivot('quantity');
     }
 }
