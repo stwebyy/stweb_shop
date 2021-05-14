@@ -46,7 +46,10 @@
         </div>
     </div>
     <div class="col-12 text-center mt-5">
-        <a class="btn btn-success" href="{{ route('index') }}">ご注文</a>
+        <form action="{{ route('order_create') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-success">ご注文</button>
+        </form>
     </div>     
     <div class="col-12 text-center mt-5">
         <a class="btn btn-dark" href="{{ route('index') }}">TOP/商品一覧へ</a>

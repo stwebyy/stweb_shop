@@ -12,7 +12,11 @@
         </li>
         @if (Auth::check())
         <li class="nav-item">
-          <a class="nav-link nav-list-item" href="{{ route('cart_index') }}">カート&nbsp;<span class="badge badge-info">{{ App\Models\Cart::where('user_id', Auth::id())->first()->products->count() }}</span></a>
+            @if (App\Models\Cart::where('user_id', Auth::id())->first())
+                <a class="nav-link nav-list-item" href="{{ route('cart_index') }}">カート&nbsp;<span class="badge badge-info">{{ App\Models\Cart::where('user_id', Auth::id())->first()->products->count() }}</span></a>
+            @else
+                <a class="nav-link nav-list-item" href="{{ route('cart_index') }}">カート</a>
+            @endif
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

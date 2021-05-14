@@ -18,3 +18,6 @@ Route::get('/cart', 'General\CartController@index')->name('cart_index');
 Route::post('/cart/add_cart', 'General\CartController@addOrEditCart')->name('cart_add_edit');
 Route::post('/cart/edit_cart', 'General\CartController@editCart')->name('cart_edit');
 Route::post('/cart/delete_cart/{id}', 'General\CartController@deleteCartItem')->name('cart_item_delete');
+
+// Order関連
+Route::post('/order/create', 'General\OrderController@createOrder')->name('order_create');
