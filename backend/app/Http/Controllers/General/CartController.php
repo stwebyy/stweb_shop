@@ -23,7 +23,7 @@ class CartController extends Controller
     public function index()
     {
         $cart = Cart::where('user_id', Auth::id())->first();
-        $cart_items = $cart->products;
+        $cart_items = $cart ? $cart->products : false;
 
         return view('general.cart.index', [
             'cart_items' => $cart_items
