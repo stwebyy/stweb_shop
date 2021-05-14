@@ -41,7 +41,7 @@ class IndexController extends Controller
                 20,
                 $current_page,
             );
-            $target_tag = Tag::find($request->query('search_tag')); 
+            $target_tag = Tag::find($request->query('search_tag'));
         } elseif ($search_tag) {
             $products_collect = Tag::find($search_tag)->products;
             $current_page = $request->page ?? 1;
@@ -51,7 +51,7 @@ class IndexController extends Controller
                 20,
                 $current_page,
             );
-            $target_tag = Tag::find($request->query('search_tag')); 
+            $target_tag = Tag::find($request->query('search_tag'));
         } else {
             $products = Product::Paginate(20);
             $target_tag = null;
