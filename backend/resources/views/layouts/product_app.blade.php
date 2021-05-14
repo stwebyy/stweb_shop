@@ -33,7 +33,7 @@
                         <h1 class="text-center mt-4">TOP/商品一覧</h1>
                         @if (session('flash_message'))
                         <div class="offset-2 col-8 alert alert-primary mt-5" role="alert">
-                            カートに追加しました。
+                            {{ session('flash_message') }}
                         </div>                                                  
                         @endif
                         <form action="{{ route('index') }}" method="GET">

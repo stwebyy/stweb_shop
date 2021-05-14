@@ -46,7 +46,7 @@
             <a href="{{ route('product_detail', $product->id) }}"><h5 class="card-title h-50p">{{ $product->name }}</h5></a>
             <p class="card-text">価格&nbsp;¥{{ number_format($product->price) }}</p>
               @if (Auth::check())
-              <form action="{{ route('cart_add') }}" method="POST">
+              <form action="{{ route('cart_add_edit') }}" method="POST">
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                 <p>

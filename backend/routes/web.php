@@ -15,4 +15,6 @@ Route::get('/product/{id}', 'General\ProductController')->name('product_detail')
 
 // カート関連
 Route::get('/cart', 'General\CartController@index')->name('cart_index');
-Route::post('/cart/add_cart', 'General\CartController@addCart')->name('cart_add');
+Route::post('/cart/add_cart', 'General\CartController@addOrEditCart')->name('cart_add_edit');
+Route::post('/cart/edit_cart', 'General\CartController@editCart')->name('cart_edit');
+Route::post('/cart/delete_cart/{id}', 'General\CartController@deleteCartItem')->name('cart_item_delete');

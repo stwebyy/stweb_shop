@@ -36,6 +36,9 @@ footer {
     bottom: 0;
 }
 
+/**
+ * プロパティ
+ */
 .h-50p {
     height: 50px;
 }
@@ -44,6 +47,17 @@ footer {
     font-size: 14px;
 }
 
+.fs-20 {
+    font-size: 20px;
+}
+
+.w-80 {
+    width: 80%;
+}
+
+/**
+ * ヘッダー関連
+ */
 .shop-header-logo {
     font-size: 26px;
     font-weight: 600;
@@ -101,4 +115,25 @@ footer {
     position: relative;
     padding-bottom: 120px;
     box-sizing: border-box;
+}
+
+/**
+ * カート画面
+ */
+.cart_list li {
+    display: inline-block;
+}
+
+.cart-list-item {
+    margin: 5px 20px;
+}
+
+.cart-item-price {
+    width: 40%;
+}
+
+
+.cart-item-quantity {
+    display: inline-block;
+    width: auto;
 }
