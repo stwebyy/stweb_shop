@@ -39,6 +39,10 @@ footer {
 /**
  * プロパティ
  */
+.fc-bk {
+    color: #000;
+}
+
 .h-50p {
     height: 50px;
 }
@@ -83,11 +87,18 @@ footer {
 	text-decoration: none;
 }
 
+.admin-menu-list {
+    position: relative;
+	text-decoration: none;
+    border-bottom: 1px solid #ddd;
+}
+
 .nav-list-item .nav-list-link {
     color: #000;
 }
 
-.nav-list-item .nav-list-link:hover {
+.nav-list-item .nav-list-link:hover,
+.admin-menu-list:hover {
     text-decoration: none;
 }
 
@@ -102,11 +113,23 @@ footer {
 	transition: all .3s ease 0s;
 }
 
+.admin-menu-list::after {
+	position: absolute;
+	content: '';
+	bottom: 0;
+	left: 0;
+	width: 0;
+	height: 1px;
+	background: #000000;
+	transition: all .3s ease 0s;
+}
+
 .nav-list-item:hover {
 	cursor: pointer;
 }
 
-.nav-list-item:hover::after {
+.nav-list-item:hover::after,
+.admin-menu-list:hover::after {
 	width: 100%;
 }
 
