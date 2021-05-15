@@ -4,6 +4,8 @@
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('/admin/login', 'Auth\AdminLoginController@showLoginForm')->name('admin_login');
+Route::post('/admin/login', 'Auth\AdminLoginController@login');
 
 // ユーザ登録
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
@@ -22,4 +24,10 @@ Route::group(['prefix' => 'cart', 'middleware' => ['auth']], function () {
 });
 
 // Order関連
-Route::post('/order/create', 'General\OrderController@createOrder')->name('order_create');
+Route::group(['middleware' => ['auth']], function () {
+    Route::post('/order/create', 'General\OrderController@createOrder')->name('order_create');
+});
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () {
+    Route::get('/', 'Admin\IndexController')->name('admin_index');
+});
