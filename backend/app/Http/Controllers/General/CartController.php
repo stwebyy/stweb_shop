@@ -10,11 +10,6 @@ use App\Models\Product;
 
 class CartController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * カート画面の表示
      *
