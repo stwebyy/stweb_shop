@@ -17,7 +17,7 @@
             <a class="nav-link nav-list-item" href="{{ route('admin_tag_index') }}">タグ一覧</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link nav-list-item" href="#">受注一覧</a>
+            <a class="nav-link nav-list-item" href="{{ route('admin_order_index') }}">受注一覧</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

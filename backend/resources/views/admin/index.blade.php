@@ -28,7 +28,7 @@
         
                 <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionExample">
                     <div class="card-body">
-                        <a href="#" class="d-block admin-menu-list mt-3 fc-bk">受注一覧</a>
+                        <a href="{{ route('admin_order_index') }}" class="d-block admin-menu-list mt-3 fc-bk">受注一覧</a>
                         <a href="#" class="d-block admin-menu-list mt-3 fc-bk">受注管理</a>
                     </div>
                 </div>

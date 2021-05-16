@@ -22,7 +22,7 @@ class Order extends Model
 
     public function status()
     {
-        return $this->belongsTo('App\Models\OrderStatus');
+        return $this->belongsTo('App\Models\OrderStatus', 'order_status_id');
     }
 
     public function orderItems()
