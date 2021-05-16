@@ -79,7 +79,6 @@ class UserCreateCommand extends Command
     {
         $attributes = [];
         $gender = $this->faker->numberBetween(0, 2);
-        $tmp_char = $this->faker->randomLetter() . $this->faker->randomLetter();
 
         for ($i = 0; $i < 5; $i++) {
             $attributes[] = [
@@ -87,7 +86,7 @@ class UserCreateCommand extends Command
                 'last_name' => $this->faker->lastName(),
                 'first_name_ruby' => $this->faker->firstKanaName($gender),
                 'last_name_ruby' => $this->faker->lastKanaName($gender),
-                'email' => $this->faker->email() . (string)$i . $tmp_char . $this->faker->randomLetter(),
+                'email' => "admin{$i}@admin.com",
                 'email_verified_at' => null,
                 'password' => $password,
                 'role_id' => self::ADMIN_ROLE_ID,
