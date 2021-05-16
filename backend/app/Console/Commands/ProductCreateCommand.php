@@ -55,14 +55,15 @@ class ProductCreateCommand extends Command
         $this->info('Start creating products.');
         $bar = $this->output->createProgressBar($loop + 1);
 
+        $file_path = 'public/images/sample.png';
         for ($i = 0; $i < $loop; $i++) {
-            $products = $this->createProduct(1000);
+            $products = $this->createProduct(1000, $file_path);
             DB::table('products')->insert($products);
             $bar->advance();
             $products = [];
         }
 
-        DB::table('products')->insert($this->createProduct($remainder));
+        DB::table('products')->insert($this->createProduct($remainder, $file_path));
 
         $bar->advance();
         $bar->finish();
@@ -104,7 +105,7 @@ class ProductCreateCommand extends Command
         $this->info(PHP_EOL . 'Products tags create is done.');
     }
 
-    protected function createProduct($count)
+    protected function createProduct($count, $file_path)
     {
         $attributes = [];
 
@@ -114,7 +115,7 @@ class ProductCreateCommand extends Command
                 'price' => $this->faker->numberBetween(1000, 10000),
                 'stock' => $this->faker->numberBetween(0, 10000),
                 'description' => $this->faker->sentence(),
-                'image' => $this->faker->imageUrl(),
+                'image' => $file_path,
                 'admin_user_id' => $this->faker->numberBetween(1, 5),
             ];
         }
