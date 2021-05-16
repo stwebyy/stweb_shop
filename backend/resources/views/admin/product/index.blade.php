@@ -21,9 +21,9 @@
             <strong>ソート順： 価格の高い順</strong>
         @elseif (request()->sort_query === "many")
             <strong>ソート順： 在庫の多い順</strong>
-            @elseif (request()->sort_query === "few")
+        @elseif (request()->sort_query === "few")
             <strong>ソート順： 在庫の少ない順</strong>
-            @elseif (request()->sort_query === "mine")
+        @elseif (request()->sort_query === "mine")
             <strong>ソート順： 自分が登録した商品</strong>
         @endif
         </p>
