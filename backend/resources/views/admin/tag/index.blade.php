@@ -57,7 +57,7 @@
                 @foreach ($tags as $tag)
                 <tr>
                     <td>{{ $tag->id }}</td>
-                    <td><a href="#">{{ $tag->name }}</a></td>
+                    <td><a href="{{ route('admin_tag_detail', $tag->id) }}">{{ $tag->name }}</a></td>
                     <td>{{ $tag->products->count() }}</td>
                 </tr>
                 @endforeach

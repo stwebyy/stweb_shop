@@ -173,3 +173,7 @@ footer {
     background: #005bd1;
     border-color: #005bd1;
 }
+
+.border-underline {
+    border-bottom: 1px solid #ddd;
+}

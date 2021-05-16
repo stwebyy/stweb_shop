@@ -43,5 +43,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
     // タグ関連
     Route::prefix('tag')->group(function () {
         Route::get('/', 'Admin\TagController@index')->name('admin_tag_index');    
+        Route::get('/detail/{id}', 'Admin\TagController@detail')->name('admin_tag_detail');    
     });
 });

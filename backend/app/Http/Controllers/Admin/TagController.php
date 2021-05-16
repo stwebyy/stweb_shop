@@ -9,7 +9,7 @@ use App\Models\Tag;
 class TagController extends Controller
 {
     /**
-     * 管理タグ一覧画面の表示
+     * タグ一覧画面の表示
      * 
      * @param Request
      * 
@@ -37,6 +37,23 @@ class TagController extends Controller
 
         return view('admin.tag.index', [
             'tags' => $tags,
+        ]);
+    }
+
+    /**
+     * タグ詳細ページの表示
+     * @param Strign $id
+     *
+     * @return View
+     */
+    public function detail($id)
+    {
+        $tag = Tag::find($id);
+        $products = Tag::find($id)->products()->paginate(40);
+
+        return view('admin.tag.detail', [
+            'products' => $products,
+            'tag' => $tag,
         ]);
     }
 }
