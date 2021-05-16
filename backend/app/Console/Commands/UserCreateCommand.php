@@ -39,7 +39,7 @@ class UserCreateCommand extends Command
 
     /**
      * Execute the console command.
-     * 1000件ずつバルクインサートを実行する
+     * 500件ずつバルクインサートを実行する
      * Userのレコードを作成
      *
      * @return mixed
@@ -57,13 +57,13 @@ class UserCreateCommand extends Command
         DB::table('users')->insert($this->createAdminUser($password));
         $this->info('admin users create is done.');
 
-        $loop = (int)floor($count / 750);
-        $remainder = $count % 750;
+        $loop = (int)floor($count / 500);
+        $remainder = $count % 500;
         $this->info('Start creating general users.');
         $bar = $this->output->createProgressBar($loop + 1);
 
         for ($i = 0; $i < $loop; $i++) {
-            $users = $this->createGeneralUser(750, $password);
+            $users = $this->createGeneralUser(500, $password);
             DB::table('users')->insert($users);
             $bar->advance();
             $users = [];
