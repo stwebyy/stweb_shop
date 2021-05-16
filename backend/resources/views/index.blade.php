@@ -44,6 +44,7 @@
         <div class="card text-center">
           <div class="card-body">
             <a href="{{ route('product_detail', $product->id) }}"><h5 class="card-title h-50p">{{ $product->name }}</h5></a>
+            <img src="{{ Storage::url($product->image) }}" width="100%">
             <p class="card-text">価格&nbsp;¥{{ number_format($product->price) }}</p>
               @if (Auth::check())
               <form action="{{ route('cart_add_edit') }}" method="POST">

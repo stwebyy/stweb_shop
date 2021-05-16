@@ -17,7 +17,7 @@
                 </div>
                 @endif
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin_product_detail_update', $product->id) }}">
+                    <form method="POST" action="{{ route('admin_product_detail_update', $product->id) }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="name" class="col-form-label text-md-right">商品名</label>
@@ -28,12 +28,17 @@
                             <input id="description" type="text" class="form-control" name="description" value="{{ $product->description }}" required placeholder="説明" autocomplete="description" @cannot('update', $product) disabled @endcannot>
                         </div>
                         <div class="form-group">
+                            <label for="description" class="col-form-label text-md-right">画像</label>
+                            <img src="{{ Storage::url($product->image) }}">
+                            <input id="description" type="file" class="form-control" name="image" value="{{ $product->description }}" required placeholder="説明" autocomplete="description" @cannot('update', $product) disabled @endcannot>
+                        </div>
+                        <div class="form-group">
                             <label for="price" class="col-form-label text-md-right">価格</label>
-                            <input id="price" type="text" class="form-control" name="price" value="{{ $product->price }}" required placeholder="価格" autocomplete="price" @cannot('update', $product) disabled @endcannot>
+                            <input id="price" type="number" class="form-control" name="price" value="{{ $product->price }}" required placeholder="価格" autocomplete="price" @cannot('update', $product) disabled @endcannot>
                         </div>
                         <div class="form-group">
                             <label for="stock" class="col-form-label text-md-right">在庫数</label>
-                            <input id="stock" type="text" class="form-control" name="stock" value="{{ $product->stock }}" required placeholder="在庫数" autocomplete="stock" @cannot('update', $product) disabled @endcannot>
+                            <input id="stock" type="number" class="form-control" name="stock" value="{{ $product->stock }}" required placeholder="在庫数" autocomplete="stock" @cannot('update', $product) disabled @endcannot>
                         </div>
                         <div class="form-group">
                             <label for="tag" class="col-form-label text-md-right">関連タグ</label>

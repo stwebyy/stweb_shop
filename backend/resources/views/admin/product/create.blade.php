@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">商品登録ページ</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin_product_store') }}">
+                    <form method="POST" action="{{ route('admin_product_store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="name" class="col-form-label text-md-right">商品名</label>
@@ -19,15 +19,15 @@
                         </div>
                         <div class="form-group">
                             <label for="price" class="col-form-label text-md-right">価格</label>
-                            <input id="price" type="text" class="form-control" name="price" value="" required placeholder="価格" autocomplete="price">
+                            <input id="price" type="number" class="form-control" name="price" value="" required placeholder="価格" autocomplete="price">
                         </div>
                         <div class="form-group">
                             <label for="stock" class="col-form-label text-md-right">在庫数</label>
-                            <input id="stock" type="text" class="form-control" name="stock" value="" required placeholder="在庫数" autocomplete="stock">
+                            <input id="stock" type="number" class="form-control" name="stock" value="" required placeholder="在庫数" autocomplete="stock">
                         </div>
                         <div class="form-group">
                             <label for="image" class="col-form-label text-md-right">画像</label>
-                            <input id="image" type="text" class="form-control" name="image" value="" required placeholder="画像" autocomplete="image">
+                            <input id="image" type="file" class="form-control-file" name="image" required>
                         </div>
                         <div class="form-group">
                             <label for="tag" class="col-form-label text-md-right">関連タグ</label>

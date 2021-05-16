@@ -65,12 +65,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $file_path = $request->file('image')->store('public/images');
         $new_product = Product::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
             'stock' => $request->input('stock'),
-            'image' => $request->input('image'),
+            'image' => $file_path,
             'admin_user_id' => \Auth::id(),
         ]);
 
@@ -112,12 +113,14 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $this->authorize('update', $product);
+        $file_path = $request->file('image')->store('public/images');
 
         $product_columns = [
-            $request->input('name'),
-            $request->input('description'),
-            $request->input('price'),
-            $request->input('stock'),
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'stock' => $request->input('stock'),
+            'image' => $file_path,
         ];
 
         $product->fill($product_columns)->save();
@@ -129,10 +132,12 @@ class ProductController extends Controller
             };
         }
 
-        foreach ($request->input('tag') as $target_tag) {
-            if (!$product->tags->contains('id', $target_tag)) {
-                $product->tags()->attach($target_tag);
-            }
+        if ($request->input('tag')) {
+            foreach ($request->input('tag') as $target_tag) {
+                if (!$product->tags->contains('id', $target_tag)) {
+                    $product->tags()->attach($target_tag);
+                }
+            }    
         }
 
         return redirect(route('admin_product_detail', $product->id))->with('flash_message', '商品を更新しました。');
