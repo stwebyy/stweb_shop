@@ -11,6 +11,7 @@ class ProductController extends Controller
 {
     /**
      * 商品一覧ページの表示
+     * @param Request
      *
      * @return view
      */
@@ -36,6 +37,18 @@ class ProductController extends Controller
         return view('admin.product.index', [
             'products' => $products,
             'sort_query' => ['sort_query' => $sort_query],
+        ]);
+    }
+
+    /**
+     * 商品詳細ページの表示
+     */
+    public function detail($id)
+    {
+        $product = Product::find($id);
+
+        return view('admin.product.detail', [
+            'product' => $product,
         ]);
     }
 }
