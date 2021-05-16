@@ -28,8 +28,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/order/create', 'General\OrderController@createOrder')->name('order_create');
 });
 
+// 管理側
 Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () {
     Route::get('/', 'Admin\IndexController')->name('admin_index');
+    // 商品関連
     Route::prefix('product')->group(function () {
         Route::get('/', 'Admin\ProductController@index')->name('admin_product_index');
         Route::get('/create', 'Admin\ProductController@create')->name('admin_product_create');
@@ -37,5 +39,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
         Route::get('/detail/{id}', 'Admin\ProductController@detail')->name('admin_product_detail');    
         Route::post('/detail/{id}', 'Admin\ProductController@update')->name('admin_product_detail_update');    
         Route::delete('/detail/{id}', 'Admin\ProductController@delete')->name('admin_product_detail_delete');    
+    });
+    // タグ関連
+    Route::prefix('tag')->group(function () {
+        Route::get('/', 'Admin\TagController@index')->name('admin_tag_index');    
     });
 });

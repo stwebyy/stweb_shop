@@ -21,11 +21,11 @@ class ProductController extends Controller
         if ($sort_query === 'latest_created') {
             $products = Product::orderBy('created_at', 'DESC')->paginate(100);
         } elseif($sort_query === 'oldest_updated') {
-            $products = Product::orderBy('update_at')->paginate(100);
+            $products = Product::orderBy('created_at')->paginate(100);
         } elseif($sort_query === 'latest_updated') {
-            $products = Product::orderBy('update_at', 'DESC')->paginate(100);
+            $products = Product::orderBy('updated_at', 'DESC')->paginate(100);
         } elseif($sort_query === 'oldest_updated') {
-            $products = Product::orderBy('update_at')->paginate(100);
+            $products = Product::orderBy('updated_at')->paginate(100);
         } elseif ($sort_query === 'cheap') {
             $products = Product::orderBy('price')->paginate(100);
         } elseif ($sort_query === 'expensive') {
