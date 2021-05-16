@@ -12,7 +12,7 @@
                 </div>                                                  
                 @endif
                 <div class="card-body">
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{ route('admin_tag_detail', $tag->id) }}">
                         @csrf
                         <div class="form-group">
                             <label for="name" class="col-form-label text-md-right">タグ名</label>
@@ -22,7 +22,6 @@
                             <div class="col-form-label text-left">関連商品数</div>
                             <div class="border-underline p-1">{{ $tag->products->count() }}</div>
                         </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-5">
                                 <button type="submit" class="btn btn-dark">
@@ -31,7 +30,7 @@
                             </div>
                         </div>
                     </form>
-                    <form class="mt-4" method="POST" action="">
+                    <form class="mt-4" method="POST" action="{{ route('admin_tag_detail', $tag->id) }}">
                         <input type="hidden" name="_method" value="delete" />
                         @csrf
                         <div class="form-group row mb-0">
@@ -70,7 +69,7 @@
             </div>    
         </div>
         <div class="col-12 text-center mt-5">
-            <a class="btn btn-dark" href="{{ route('admin_product_index') }}">商品一覧へ</a>
+            <a class="btn btn-dark" href="{{ route('admin_tag_index') }}">タグ一覧へ</a>
         </div>
     </div>
 </div>

@@ -36,7 +36,7 @@
         <div class="text-right mb-3">
             <a href="{{ route('admin_product_create') }}">
                 <div class="btn btn-product-register">
-                    <i class="fas fa-user-plus"></i>&nbsp;&nbsp;商品登録
+                    <i class="fas fa-archive"></i>&nbsp;&nbsp;商品登録
                 </div>
             </a>
         </div>

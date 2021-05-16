@@ -20,11 +20,11 @@ class ProductController extends Controller
         $sort_query = $request->query('sort_query');
         if ($sort_query === 'latest_created') {
             $products = Product::orderBy('created_at', 'DESC')->paginate(100);
-        } elseif($sort_query === 'oldest_updated') {
+        } elseif ($sort_query === 'oldest_updated') {
             $products = Product::orderBy('created_at')->paginate(100);
-        } elseif($sort_query === 'latest_updated') {
+        } elseif ($sort_query === 'latest_updated') {
             $products = Product::orderBy('updated_at', 'DESC')->paginate(100);
-        } elseif($sort_query === 'oldest_updated') {
+        } elseif ($sort_query === 'oldest_updated') {
             $products = Product::orderBy('updated_at')->paginate(100);
         } elseif ($sort_query === 'cheap') {
             $products = Product::orderBy('price')->paginate(100);
@@ -102,10 +102,10 @@ class ProductController extends Controller
 
     /**
      * 商品の更新
-     * 
+     *
      * @param Request
      * @param String Product_ID
-     * 
+     *
      * @return Redirect
      */
     public function update(Request $request, $id)
@@ -141,7 +141,7 @@ class ProductController extends Controller
     /**
      * 商品の削除
      * @param String Product_ID
-     * 
+     *
      * @return Redirect
      */
     public function delete($id)
@@ -153,5 +153,4 @@ class ProductController extends Controller
 
         return redirect(route('admin_product_index'))->with('flash_message', '商品を削除しました。');
     }
-
 }

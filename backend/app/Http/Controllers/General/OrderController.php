@@ -10,7 +10,7 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
-    const PRE_ORDER_STATUS = 2;
+    private const PRE_ORDER_STATUS = 2;
 
     public function createOrder()
     {
@@ -27,7 +27,7 @@ class OrderController extends Controller
 
         $cart = Cart::where('user_id', $user_id)->first();
         $cart_items = $cart->products;
-        
+
         foreach ($cart_items as $cart_item) {
             $order->orderItems()->save($cart_item, [
                 'quantity' => $cart_item->pivot->quantity
@@ -39,7 +39,8 @@ class OrderController extends Controller
         \Log::info("userID: $user_id のカートを削除しました。");
 
         return redirect(route('index'))->with(
-            'flash_message', "ご注文いただきありがとうございます。\n ご注文手続きを完了しました。\n ご注文番号： $order->order_number"
+            'flash_message',
+            "ご注文いただきありがとうございます。\n ご注文手続きを完了しました。\n ご注文番号： $order->order_number"
         );
     }
 }

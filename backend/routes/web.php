@@ -43,6 +43,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
     // タグ関連
     Route::prefix('tag')->group(function () {
         Route::get('/', 'Admin\TagController@index')->name('admin_tag_index');    
+        Route::get('/create', 'Admin\TagController@create')->name('admin_tag_create');
+        Route::post('/store', 'Admin\TagController@store')->name('admin_tag_store');
         Route::get('/detail/{id}', 'Admin\TagController@detail')->name('admin_tag_detail');    
+        Route::post('/detail/{id}', 'Admin\TagController@update')->name('admin_tag_detail_update');    
+        Route::delete('/detail/{id}', 'Admin\TagController@delete')->name('admin_tag_detail_delete');    
     });
 });

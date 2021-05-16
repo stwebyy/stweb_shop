@@ -28,9 +28,9 @@
         </p>
         @endif
         <div class="text-right mb-3">
-            <a href="#">
+            <a href="{{ route('admin_tag_create') }}">
                 <div class="btn btn-product-register">
-                    <i class="fas fa-user-plus"></i>&nbsp;&nbsp;タグ登録
+                    <i class="fas fa-tag"></i>&nbsp;&nbsp;タグ登録
                 </div>
             </a>
         </div>

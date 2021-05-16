@@ -9,8 +9,8 @@ use App\Models\User;
 
 class UserCreateCommand extends Command
 {
-    const ADMIN_ROLE_ID = 1;
-    const GENERAL_ROLE_ID = 2;
+    private const ADMIN_ROLE_ID = 1;
+    private const GENERAL_ROLE_ID = 2;
 
     /**
      * The name and signature of the console command.

@@ -20,7 +20,7 @@ class AuthAdmin
         if (!\Auth::check()) {
             return redirect()->route('admin_login');
         }
- 
+
         //ユーザーの権限チェック
         if (\Auth::user()->role->role_name === '管理者') {
             return $next($request);
@@ -28,4 +28,4 @@ class AuthAdmin
             return abort(403);
         }
     }
- }
+}
