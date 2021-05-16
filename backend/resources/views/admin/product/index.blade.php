@@ -8,9 +8,13 @@
         @if (request()->sort_query)
         <p>
         @if (request()->sort_query === "latest_created")
-        <strong>ソート順： 登録順</strong>
+        <strong>ソート順： 新しく登録された順</strong>
+        @elseif (request()->sort_query === "oldest_created")
+        <strong>ソート順： 過去に登録された順</strong>
         @elseif (request()->sort_query === "latest_updated")
-        <strong>ソート順： 更新順</strong>
+        <strong>ソート順： 新しく更新された順</strong>
+        @elseif (request()->sort_query === "oldest_updated")
+        <strong>ソート順： 過去に更新された順</strong>
         @elseif (request()->sort_query === "cheap")           
             <strong>ソート順： 価格の安い順</strong>
         @elseif (request()->sort_query === "expensive")           
@@ -25,8 +29,10 @@
         <form id="sort_form" class="offset-8 col-4 text-right mb-3" action="{{ route('admin_product_index') }}" method="GET">
             <select id="sort" class="form-control" name="sort_query">
               <option value="">-</option>
-              <option value="latest_created">登録順</option>
-              <option value="latest_updated">更新順</option>
+              <option value="latest_created">新しく登録された順</option>
+              <option value="oldest_created">過去に登録された順</option>
+              <option value="latest_updated">新しく更新された順</option>
+              <option value="oldest_updated">過去に更新された順</option>
               <option value="cheap">価格の安い順</option>
               <option value="expensive">価格の高い順</option>
               <option value="many">在庫の多い順</option>

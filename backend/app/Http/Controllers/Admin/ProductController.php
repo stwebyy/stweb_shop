@@ -20,8 +20,12 @@ class ProductController extends Controller
         $sort_query = $request->query('sort_query');
         if ($sort_query === 'latest_created') {
             $products = Product::orderBy('created_at', 'DESC')->paginate(100);
+        } elseif($sort_query === 'oldest_updated') {
+            $products = Product::orderBy('update_at')->paginate(100);
         } elseif($sort_query === 'latest_updated') {
             $products = Product::orderBy('update_at', 'DESC')->paginate(100);
+        } elseif($sort_query === 'oldest_updated') {
+            $products = Product::orderBy('update_at')->paginate(100);
         } elseif ($sort_query === 'cheap') {
             $products = Product::orderBy('price')->paginate(100);
         } elseif ($sort_query === 'expensive') {
@@ -42,13 +46,18 @@ class ProductController extends Controller
 
     /**
      * 商品詳細ページの表示
+     * @param Strign $id
+     *
+     * @return View
      */
     public function detail($id)
     {
         $product = Product::find($id);
+        $tags = Tag::all();
 
         return view('admin.product.detail', [
             'product' => $product,
+            'tags' => $tags,
         ]);
     }
 }
