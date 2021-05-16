@@ -34,6 +34,8 @@ class ProductController extends Controller
             $products = Product::orderBy('stock')->paginate(100);
         } elseif ($sort_query === 'many') {
             $products = Product::orderBy('stock', 'DESC')->paginate(100);
+        } elseif ($sort_query === 'mine') {
+            $products = Product::where('admin_user_id', \Auth::id())->paginate(100);
         } else {
             $products = Product::paginate(100);
         }

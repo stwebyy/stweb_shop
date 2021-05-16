@@ -15,14 +15,16 @@
         <strong>ソート順： 新しく更新された順</strong>
         @elseif (request()->sort_query === "oldest_updated")
         <strong>ソート順： 過去に更新された順</strong>
-        @elseif (request()->sort_query === "cheap")           
+        @elseif (request()->sort_query === "cheap")
             <strong>ソート順： 価格の安い順</strong>
-        @elseif (request()->sort_query === "expensive")           
+        @elseif (request()->sort_query === "expensive")
             <strong>ソート順： 価格の高い順</strong>
-        @elseif (request()->sort_query === "many")           
+        @elseif (request()->sort_query === "many")
             <strong>ソート順： 在庫の多い順</strong>
-        @elseif (request()->sort_query === "few")           
+            @elseif (request()->sort_query === "few")
             <strong>ソート順： 在庫の少ない順</strong>
+            @elseif (request()->sort_query === "mine")
+            <strong>ソート順： 自分が登録した商品</strong>
         @endif
         </p>
         @endif  
@@ -37,6 +39,7 @@
               <option value="expensive">価格の高い順</option>
               <option value="many">在庫の多い順</option>
               <option value="few">在庫の少ない順</option>
+              <option value="mine">自分が登録した商品</option>
             </select>
         </form>    
         <table class="table table-striped">
