@@ -30,4 +30,5 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () {
     Route::get('/', 'Admin\IndexController')->name('admin_index');
+    Route::get('/product', 'Admin\ProductController@index')->name('admin_product_index');
 });

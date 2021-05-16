@@ -12,7 +12,7 @@
                 </div>
                 <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#accordionExample">
                     <div class="card-body">
-                        <a href="#" class="d-block admin-menu-list mt-3 mb-3 fc-bk">商品一覧</a>
+                        <a href="{{ route('admin_product_index') }}" class="d-block admin-menu-list mt-3 mb-3 fc-bk">商品一覧</a>
                         <a href="#" class="d-block admin-menu-list mt-3 mb-3 fc-bk">商品登録</a>
                         <a href="#" class="d-block admin-menu-list mt-3 mb-3 fc-bk">タグ管理</a>
                     </div>
