@@ -52,5 +52,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
     // 受注関連
     Route::prefix('order')->group(function () {
         Route::get('/', 'Admin\OrderController@index')->name('admin_order_index');
+        Route::get('/detail/{id}', 'Admin\OrderController@detail')->name('admin_order_detail');
     });
 });

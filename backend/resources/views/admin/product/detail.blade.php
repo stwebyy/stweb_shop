@@ -14,7 +14,7 @@
                 @if (session('flash_message'))
                 <div class="offset-2 col-8 alert alert-primary mt-5" role="alert">
                     {{ session('flash_message') }}
-                </div>                                                  
+                </div>
                 @endif
                 <div class="card-body">
                     <form method="POST" action="{{ route('admin_product_detail_update', $product->id) }}">

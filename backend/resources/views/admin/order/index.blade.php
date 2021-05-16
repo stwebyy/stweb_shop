@@ -45,7 +45,7 @@
             <tbody>
                 @foreach ($orders as $order)
                 <tr>
-                    <td><a href="#">{{ $order->order_number }}</a></td>
+                    <td><a href="{{ route('admin_order_detail', $order->id) }}">{{ $order->order_number }}</a></td>
                     @php
                     $price = 0;
                     foreach ($order->orderItems as $order_item) {
