@@ -11,8 +11,13 @@
                     この商品の登録者のみ商品情報の編集ができます。
                 </div>
                 @endcannot
+                @if (session('flash_message'))
+                <div class="offset-2 col-8 alert alert-primary mt-5" role="alert">
+                    {{ session('flash_message') }}
+                </div>                                                  
+                @endif
                 <div class="card-body">
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{ route('admin_product_detail_update', $product->id) }}">
                         @csrf
                         <div class="form-group">
                             <label for="name" class="col-form-label text-md-right">商品名</label>
@@ -32,9 +37,9 @@
                         </div>
                         <div class="form-group">
                             <label for="tag" class="col-form-label text-md-right">関連タグ</label>
-                            <select id="tag" class="form-control" name="tag" multiple @cannot('update', $product) disabled @endcannot>
+                            <select id="tag" class="form-control" name="tag[]" multiple @cannot('update', $product) disabled @endcannot>
                                 @foreach ($tags as $tag)
-                                    <option value="{{ $tag->id }}" @if ($product->tags->whereIn('id', $tag->id)->count() > 0) {{ 'selected' }} @endif>{{ $tag->name }}</option>
+                                    <option value="{{ $tag->id }}" @if ($product->tags->contains('id', $tag->id)) {{ 'selected' }} @endif>{{ $tag->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -49,7 +54,9 @@
                         @endcan
                     </form>
                     @can('update', $product)
-                    <form class="mt-4" method="POST" action="#">
+                    <form class="mt-4" method="POST" action="{{ route('admin_product_detail_delete', $product->id) }}">
+                        <input type="hidden" name="_method" value="delete" />
+                        @csrf
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-5">
                                 <button type="submit" class="btn btn-danger">

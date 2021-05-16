@@ -5,6 +5,11 @@
     <div class="offset-2 col-8">
         <h1>管理/商品一覧</h1>
         <hr>
+        @if (session('flash_message'))
+        <div class="offset-2 col-8 alert alert-primary mt-5" role="alert">
+            {{ session('flash_message') }}
+        </div>                                                  
+        @endif
         @if (request()->sort_query)
         <p>
         @if (request()->sort_query === "latest_created")
