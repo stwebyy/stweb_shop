@@ -25,15 +25,15 @@
                         </div>
                         <div class="form-group">
                             <label for="description" class="col-form-label text-md-right">説明</label>
-                            <input id="description" type="text" class="form-control" name="description" value="{{ $product->description }}" required placeholder="説明" autocomplete="name" @cannot('update', $product) disabled @endcannot>
+                            <input id="description" type="text" class="form-control" name="description" value="{{ $product->description }}" required placeholder="説明" autocomplete="description" @cannot('update', $product) disabled @endcannot>
                         </div>
                         <div class="form-group">
                             <label for="price" class="col-form-label text-md-right">価格</label>
-                            <input id="price" type="text" class="form-control" name="price" value="{{ $product->price }}" required placeholder="価格" autocomplete="name" @cannot('update', $product) disabled @endcannot>
+                            <input id="price" type="text" class="form-control" name="price" value="{{ $product->price }}" required placeholder="価格" autocomplete="price" @cannot('update', $product) disabled @endcannot>
                         </div>
                         <div class="form-group">
                             <label for="stock" class="col-form-label text-md-right">在庫数</label>
-                            <input id="stock" type="text" class="form-control" name="stock" value="{{ $product->stock }}" required placeholder="在庫数" autocomplete="name" @cannot('update', $product) disabled @endcannot>
+                            <input id="stock" type="text" class="form-control" name="stock" value="{{ $product->stock }}" required placeholder="在庫数" autocomplete="stock" @cannot('update', $product) disabled @endcannot>
                         </div>
                         <div class="form-group">
                             <label for="tag" class="col-form-label text-md-right">関連タグ</label>
@@ -43,6 +43,15 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="stock" class="col-form-label text-md-right">在庫数</label>
+                            <input id="stock" type="text" class="form-control" name="stock" value="{{ $product->stock }}" required placeholder="在庫数" autocomplete="name" @cannot('update', $product) disabled @endcannot>
+                        </div>
+                        <div class="form-group">
+                            <label for="stock" class="col-form-label text-md-right">在庫数</label>
+                            <input id="stock" type="text" class="form-control" name="stock" value="{{ $product->stock }}" required placeholder="在庫数" autocomplete="name" @cannot('update', $product) disabled @endcannot>
+                        </div>
+
                         @can('update', $product)
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-5">

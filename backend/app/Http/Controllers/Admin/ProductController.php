@@ -47,6 +47,43 @@ class ProductController extends Controller
     }
 
     /**
+     * 商品登録ページの表示
+     */
+    public function create()
+    {
+        $tags = Tag::all();
+        return view('admin.product.create', [
+            'tags' => $tags,
+        ]);
+    }
+
+    /**
+     * 商品登録処理
+     * @param Request
+     *
+     * @return Redirect
+     */
+    public function store(Request $request)
+    {
+        $new_product = Product::create([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'stock' => $request->input('stock'),
+            'image' => $request->input('image'),
+            'admin_user_id' => \Auth::id(),
+        ]);
+
+        if ($request->input('tag')) {
+            foreach ($request->input('tag') as $target_tag) {
+                $new_product->tags()->attach($target_tag);
+            }
+        }
+
+        return redirect(route('admin_product_index'))->with('flash_message', '商品を登録しました。');
+    }
+
+    /**
      * 商品詳細ページの表示
      * @param Strign $id
      *

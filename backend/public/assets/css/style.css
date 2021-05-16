@@ -160,3 +160,16 @@ footer {
     display: inline-block;
     width: auto;
 }
+
+.btn-product-register {
+    color: #fff;
+    background: #3c8af3;
+    border-color: #3c8af3;
+    border-radius: 3px;
+}
+
+.btn-product-register:hover {
+    color: #fff;
+    background: #005bd1;
+    border-color: #005bd1;
+}

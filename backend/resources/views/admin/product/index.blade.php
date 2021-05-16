@@ -3,12 +3,12 @@
 @section('content')
 <div class="row">
     <div class="offset-2 col-8">
-        <h1>管理/商品一覧</h1>
+        <h1>商品一覧</h1>
         <hr>
         @if (session('flash_message'))
         <div class="offset-2 col-8 alert alert-primary mt-5" role="alert">
             {{ session('flash_message') }}
-        </div>                                                  
+        </div>
         @endif
         @if (request()->sort_query)
         <p>
@@ -32,8 +32,15 @@
             <strong>ソート順： 自分が登録した商品</strong>
         @endif
         </p>
-        @endif  
-        <form id="sort_form" class="offset-8 col-4 text-right mb-3" action="{{ route('admin_product_index') }}" method="GET">
+        @endif
+        <div class="text-right mb-3">
+            <a href="{{ route('admin_product_create') }}">
+                <div class="btn btn-product-register">
+                    <i class="fas fa-user-plus"></i>&nbsp;&nbsp;商品登録
+                </div>
+            </a>
+        </div>
+        <form id="sort_form" class="offset-8 col-4 text-right mb-3 p-0" action="{{ route('admin_product_index') }}" method="GET">
             <select id="sort" class="form-control" name="sort_query">
               <option value="">-</option>
               <option value="latest_created">新しく登録された順</option>

@@ -15,6 +15,7 @@ class Product extends Model
         'stock',
         'description',
         'image',
+        'admin_user_id'
     ];
 
     public function orders()

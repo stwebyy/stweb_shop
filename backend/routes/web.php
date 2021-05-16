@@ -32,6 +32,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
     Route::get('/', 'Admin\IndexController')->name('admin_index');
     Route::prefix('product')->group(function () {
         Route::get('/', 'Admin\ProductController@index')->name('admin_product_index');
+        Route::get('/create', 'Admin\ProductController@create')->name('admin_product_create');
+        Route::post('/store', 'Admin\ProductController@store')->name('admin_product_store');
         Route::get('/detail/{id}', 'Admin\ProductController@detail')->name('admin_product_detail');    
         Route::post('/detail/{id}', 'Admin\ProductController@update')->name('admin_product_detail_update');    
         Route::delete('/detail/{id}', 'Admin\ProductController@delete')->name('admin_product_detail_delete');    
