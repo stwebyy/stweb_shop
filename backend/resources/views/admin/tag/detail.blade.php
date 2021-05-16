@@ -22,6 +22,14 @@
                             <div class="col-form-label text-left">関連商品数</div>
                             <div class="border-underline p-1">{{ $tag->products->count() }}</div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-form-label text-left">登録日</div>
+                            <div class="border-underline p-1">{{ $tag->created_at }}</div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-form-label text-left">更新日</div>
+                            <div class="border-underline p-1">{{ $tag->updated_at }}</div>
+                        </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-5">
                                 <button type="submit" class="btn btn-dark">

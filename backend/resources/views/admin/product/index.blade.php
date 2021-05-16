@@ -61,6 +61,8 @@
                 <th scope="col">商品名</th>
                 <th scope="col">価格</th>
                 <th scope="col">在庫</th>
+                <th scope="col">登録日</th>
+                <th scope="col">更新日</th>
               </tr>
             </thead>
             <tbody>
@@ -70,6 +72,8 @@
                     <td><a href="{{ route('admin_product_detail', $product->id) }}">{{ $product->name }}</a></td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->stock }}</td>
+                    <td>{{ $product->created_at }}</td>
+                    <td>{{ $product->updated_at }}</td>
                 </tr>
                 @endforeach
             </tbody>

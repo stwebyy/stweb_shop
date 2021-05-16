@@ -44,13 +44,13 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="stock" class="col-form-label text-md-right">在庫数</label>
-                            <input id="stock" type="text" class="form-control" name="stock" value="{{ $product->stock }}" required placeholder="在庫数" autocomplete="name" @cannot('update', $product) disabled @endcannot>
-                        </div>
+                            <div class="col-form-label text-left">登録日</div>
+                            <div class="border-underline p-1">{{ $product->created_at }}</div>
+                            </div>
                         <div class="form-group">
-                            <label for="stock" class="col-form-label text-md-right">在庫数</label>
-                            <input id="stock" type="text" class="form-control" name="stock" value="{{ $product->stock }}" required placeholder="在庫数" autocomplete="name" @cannot('update', $product) disabled @endcannot>
-                        </div>
+                            <div class="col-form-label text-left">更新日</div>
+                            <div class="border-underline p-1">{{ $product->updated_at }}</div>
+                            </div>
 
                         @can('update', $product)
                         <div class="form-group row mb-0">

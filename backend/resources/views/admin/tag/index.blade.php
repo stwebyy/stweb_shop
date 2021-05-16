@@ -51,6 +51,8 @@
                 <th scope="col">タグID</th>
                 <th scope="col">タグ名</th>
                 <th scope="col">関連商品数</th>
+                <th scope="col">登録日</th>
+                <th scope="col">更新日</th>
               </tr>
             </thead>
             <tbody>
@@ -59,6 +61,8 @@
                     <td>{{ $tag->id }}</td>
                     <td><a href="{{ route('admin_tag_detail', $tag->id) }}">{{ $tag->name }}</a></td>
                     <td>{{ $tag->products->count() }}</td>
+                    <td>{{ $tag->created_at }}</td>
+                    <td>{{ $tag->updated_at }}</td>
                 </tr>
                 @endforeach
             </tbody>
